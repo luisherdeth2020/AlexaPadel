@@ -35,3 +35,9 @@
 	color: #22356f;
     font-weight: bold;
 }
+.text__message{
+	display: block;
+	text-transform: uppercase;
+	margin-top: 1rem;
+	font-weight: bold;
+}

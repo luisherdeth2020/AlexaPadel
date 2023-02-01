@@ -61,6 +61,12 @@ function Puntos() {
 			setResult1({ ...result1, set1: result1.set1 + 1, totalPoints: 0 });
 			setResult2({ ...result2, totalPoints: 0 });
 		}
+		if (result2.set1 === 2 && result1.totalPoints === 40) {
+			setResult1({ ...result1, set2: result1.set2 + 1, totalPoints: 0 });
+		}
+		if (result1.set2 === 2 && result1.totalPoints === 40) {
+			setResult1({ ...result1, set3: result1.set3 + 1, totalPoints: 0 });
+		}
 		if (result1.set1 === 2 && result1.totalPoints === 40) {
 			setResult1({ ...result1, set2: result1.set2 + 1, totalPoints: 0 });
 		}
@@ -69,7 +75,21 @@ function Puntos() {
 			setResult1({ ...result1, set2: 2, totalPoints: 0 });
 
 			setDisabled(true);
-			return setVictory({ show: true, Message: '🏆¡ENHORABUENA!🏆' });
+			return setVictory({
+				show: true,
+				Message: `
+			🏆${names[0]} & ${names[1]}🏆`,
+			});
+		}
+		if (result1.set2 === 2 && result1.set3 === 1 && result1.totalPoints === 40) {
+			setResult1({ ...result1, set3: 2, totalPoints: 0 });
+
+			setDisabled(true);
+			return setVictory({
+				show: true,
+				Message: `
+			🏆${names[0]} & ${names[1]}🏆`,
+			});
 		}
 
 		// console.log('cuando es SET2 ' + setResult1(result1));
@@ -86,24 +106,50 @@ function Puntos() {
 	async function handleClickTwo() {
 		setIsLoadling(true);
 		// await hans();
-
+		// if (setResult1.set1 === 2) {
+		// 	setResult2({ ...result2, totalPoints: result2.totalPoints + 15 });
+		// }
 		setResult2({ ...result2, totalPoints: result2.totalPoints + 15 });
 		if (result2.totalPoints === 30) {
 			setResult2({ ...result2, totalPoints: result2.totalPoints + 10 });
 		}
-		if (result2.totalPoints === 40) {
+		if (result2.totalPoints === 40 && result1.set2 === 2) {
+			setResult2({ ...result2, set3: result2.set3 + 1, totalPoints: 0 });
 			setResult1({ ...result1, totalPoints: 0 });
-			setResult2({ ...result2, set1: result2.set1 + 1, totalPoints: 0 });
 		}
-
+		if (result2.totalPoints === 40 && result1.set1 === 2) {
+			setResult1({ ...result1, totalPoints: 0 });
+			setResult2({ ...result2, set2: result2.set2 + 1, totalPoints: 0 });
+		}
+		
+		if (result2.totalPoints === 40 && result1.set1 < 2) {
+			setResult2({ ...result2, set1: result2.set1 + 1, totalPoints: 0 });
+			setResult1({ ...result1, totalPoints: 0 });
+		}
+		
 		if (result2.set1 === 2 && result2.totalPoints === 40) {
 			setResult2({ ...result2, set2: result2.set2 + 1, totalPoints: 0 });
+		}
+		if (result2.set2 === 2 && result2.totalPoints === 40) {
+			setResult2({ ...result2, set3: result2.set3 + 1, totalPoints: 0 });
 		}
 		if (result2.set1 === 2 && result2.set2 === 1 && result2.totalPoints === 40) {
 			setResult2({ ...result2, set2: 2, totalPoints: 0 });
 
 			setDisabled(true);
-			return setVictory({ show: true, Message: 'VICTORYYYYYYY' });
+			return setVictory({
+				show: true,
+				Message: `🏆 ${names[2]} & ${names[3]} 🏆`,
+			});
+		}
+		if (result2.set2 === 2 && result2.set3 === 1 && result2.totalPoints === 40) {
+			setResult2({ ...result2, set3: 2, totalPoints: 0 });
+
+			setDisabled(true);
+			return setVictory({
+				show: true,
+				Message: `🏆 ${names[2]} & ${names[3]} 🏆`,
+			});
 		}
 	}
 	function deleteClickB() {
@@ -156,10 +202,18 @@ function Puntos() {
 				</tbody>
 			</table>
 			<div className="d-flex flex-column align-items-center">
-				<h1 className="text-center victory">{victory.Message}</h1>
+				{victory.Message && (
+					<h3 className="text-center victory">
+						¡CAMPEONES!
+						<h2>
+							<span className="text__message">{victory.Message}</span>
+						</h2>
+					</h3>
+				)}
+
 				{victory.show && (
 					<img
-						src="https://i.pinimg.com/originals/ed/3d/b4/ed3db48d311233f99947e2111f6fd1c6.gif"
+						src="https://thumbs.gfycat.com/EasygoingComplicatedIndianpalmsquirrel-size_restricted.gif"
 						alt="lets gooo"
 					/>
 				)}
