@@ -52,14 +52,20 @@ function Puntos() {
 
 	async function handleClickOne() {
 		setIsLoadling(true);
-		// await hans();
+
 		setResult1({ ...result1, totalPoints: result1.totalPoints + 15 });
 		if (result1.totalPoints === 30) {
 			setResult1({ ...result1, totalPoints: result1.totalPoints + 10 });
 		}
-		if (result1.totalPoints === 40) {
+		if (result1.totalPoints === 40 && result2.set1 < 2) {
 			setResult1({ ...result1, set1: result1.set1 + 1, totalPoints: 0 });
 			setResult2({ ...result2, totalPoints: 0 });
+		}
+		if (result1.set1 === 2 && result1.totalPoints === 40) {
+			setResult1({ ...result1, set2: result1.set2 + 1, totalPoints: 0 });
+		}
+		if (result2.set2 === 2 && result1.totalPoints === 40) {
+			setResult1({ ...result1, set3: result1.set3 + 1, totalPoints: 0 });
 		}
 		if (result2.set1 === 2 && result1.totalPoints === 40) {
 			setResult1({ ...result1, set2: result1.set2 + 1, totalPoints: 0 });
@@ -67,10 +73,7 @@ function Puntos() {
 		if (result1.set2 === 2 && result1.totalPoints === 40) {
 			setResult1({ ...result1, set3: result1.set3 + 1, totalPoints: 0 });
 		}
-		if (result1.set1 === 2 && result1.totalPoints === 40) {
-			setResult1({ ...result1, set2: result1.set2 + 1, totalPoints: 0 });
-		}
-		// console.log('cuando es SET1 ' + setResult1(result1));
+		
 		if (result1.set1 === 2 && result1.set2 === 1 && result1.totalPoints === 40) {
 			setResult1({ ...result1, set2: 2, totalPoints: 0 });
 
@@ -91,8 +94,16 @@ function Puntos() {
 			🏆${names[0]} & ${names[1]}🏆`,
 			});
 		}
+		if (result1.set1 === 2 && result1.set3 === 1 && result1.totalPoints === 40) {
+			setResult1({ ...result1, set3: 2, totalPoints: 0 });
 
-		// console.log('cuando es SET2 ' + setResult1(result1));
+			setDisabled(true);
+			return setVictory({
+				show: true,
+				Message: `
+			🏆${names[0]} & ${names[1]}🏆`,
+			});
+		}
 	}
 	function deleteClickA() {
 		setResult1({ ...result1, totalPoints: result1.totalPoints - 15 });
@@ -105,31 +116,28 @@ function Puntos() {
 	}
 	async function handleClickTwo() {
 		setIsLoadling(true);
-		// await hans();
-		// if (setResult1.set1 === 2) {
-		// 	setResult2({ ...result2, totalPoints: result2.totalPoints + 15 });
-		// }
+
 		setResult2({ ...result2, totalPoints: result2.totalPoints + 15 });
 		if (result2.totalPoints === 30) {
 			setResult2({ ...result2, totalPoints: result2.totalPoints + 10 });
+		}
+		if (result2.totalPoints === 40 && result1.set1 !== 2) {
+			setResult2({ ...result2, set1: result2.set1 + 1, totalPoints: 0 });
+			setResult1({ ...result1, totalPoints: 0 });
+		}
+		if (result2.set1 === 2 && result2.totalPoints === 40) {
+			setResult2({ ...result2, set2: result2.set2 + 1, totalPoints: 0 });
 		}
 		if (result2.totalPoints === 40 && result1.set2 === 2) {
 			setResult2({ ...result2, set3: result2.set3 + 1, totalPoints: 0 });
 			setResult1({ ...result1, totalPoints: 0 });
 		}
+
 		if (result2.totalPoints === 40 && result1.set1 === 2) {
 			setResult1({ ...result1, totalPoints: 0 });
 			setResult2({ ...result2, set2: result2.set2 + 1, totalPoints: 0 });
 		}
-		
-		if (result2.totalPoints === 40 && result1.set1 < 2) {
-			setResult2({ ...result2, set1: result2.set1 + 1, totalPoints: 0 });
-			setResult1({ ...result1, totalPoints: 0 });
-		}
-		
-		if (result2.set1 === 2 && result2.totalPoints === 40) {
-			setResult2({ ...result2, set2: result2.set2 + 1, totalPoints: 0 });
-		}
+
 		if (result2.set2 === 2 && result2.totalPoints === 40) {
 			setResult2({ ...result2, set3: result2.set3 + 1, totalPoints: 0 });
 		}
@@ -143,6 +151,15 @@ function Puntos() {
 			});
 		}
 		if (result2.set2 === 2 && result2.set3 === 1 && result2.totalPoints === 40) {
+			setResult2({ ...result2, set3: 2, totalPoints: 0 });
+
+			setDisabled(true);
+			return setVictory({
+				show: true,
+				Message: `🏆 ${names[2]} & ${names[3]} 🏆`,
+			});
+		}
+		if (result2.set1 === 2 && result2.set3 === 1 && result2.totalPoints === 40) {
 			setResult2({ ...result2, set3: 2, totalPoints: 0 });
 
 			setDisabled(true);
