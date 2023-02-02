@@ -10,7 +10,7 @@ const Header = () => {
 
 	const enviarForm = (e) => {
 		e.preventDefault();
-		
+
 		if (inputValue === '') {
 			return;
 		}
@@ -20,11 +20,11 @@ const Header = () => {
 			setDisabled(true);
 		}
 	};
-	const restablecer = ()=>{
-		setNames([''])
-		setInputValue('');
-		// document.querySelector('.participantes__caja').display = 'none';
-	}
+	const restablecer = () => {
+		console.log(names);
+
+		setNames([]);
+	};
 	return (
 		<>
 			<div className="container">
@@ -44,7 +44,7 @@ const Header = () => {
 						<button className={styles.add} disabled={disabled} type="submit">
 							Añadir
 						</button>
-						<button onClick={restablecer} className={styles.add}  type="submit">
+						<button onClick={restablecer} className={styles.add} type="submit">
 							Restablecer
 						</button>
 						{disabled && (

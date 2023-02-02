@@ -15,38 +15,42 @@ function Puntos() {
 	const [error, setError] = useState('');
 	const [isLoadling, setIsLoadling] = useState(false);
 
-	useEffect(() => {
-		(async () => {
-			const data = {
-				idTeam1: '',
-				idTeam2: '',
-				sets: [
-					{
-						Equipo1set1: result1.set1,
-						Equipo1set2: result1.set2,
-						Equipo2set1: result2.set1,
-						Equipo2set2: result2.set2,
-						totalPoints: { equipo1: result1.totalPoints, equipo2: result2.totalPoints },
-						finished: false,
-					},
-				],
-			};
-			if (isLoadling) {
-				await axios
-					.post('http://localhost:3900/api/score', data)
+	// useEffect(() => {
+	// 	(async () => {
+	// 		const data = {
+	// 			idTeam1: '',
+	// 			idTeam2: '',
+	// 			sets: [
+	// 				{
+	// 					Equipo1set1: result1.set1,
+	// 					Equipo1set2: result1.set2,
+	// 					Equipo2set1: result2.set1,
+	// 					Equipo2set2: result2.set2,
+	// 					totalPoints: { equipo1: result1.totalPoints, equipo2: result2.totalPoints },
+	// 					finished: false,
+	// 				},
+	// 			],
+	// 		};
+	// 		if (isLoadling) {
+	// 			await axios
+	// 				.post('http://localhost:3900/api/score', data)
 
-					.then(() => {
-						setIsLoadling(false);
-					})
-					.catch((err) => {
-						setError(err.message);
-						setIsLoadling(false);
-						console.error('Error ', err.message);
-					});
-				setIsLoadling(false);
-			}
-		})();
-	}, [result1, result2]);
+	// 				.then(() => {
+	// 					setIsLoadling(false);
+	// 				})
+	// 				.catch((err) => {
+	// 					setError(err.message);
+	// 					setIsLoadling(false);
+	// 					console.error('Error ', err.message);
+	// 				});
+	// 			setIsLoadling(false);
+	// 		}
+	// 	})();
+	// }, [result1, result2]);
+	const restablecer = () => {
+
+		setNames([]);
+	};
 
 	async function handleClickOne() {
 		setIsLoadling(true);
@@ -266,8 +270,8 @@ function Puntos() {
 					/>
 				</div>
 			</div>
-			<NavLink to="/" className="nav-link fs-2 my-5 button_30" role="button">
-				<span class="text">Inicio</span>
+			<NavLink onClick={restablecer} to="/" className="nav-link fs-2 my-5 button_30" role="button">
+				<span className="text">Inicio</span>
 			</NavLink>
 		</>
 	);
