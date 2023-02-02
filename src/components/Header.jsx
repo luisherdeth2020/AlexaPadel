@@ -22,6 +22,7 @@ const Header = () => {
 	};
 	const restablecer = () => {
 		setNames([]);
+		setDisabled(false);
 	};
 	return (
 		<>
