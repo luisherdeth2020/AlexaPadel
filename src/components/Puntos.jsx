@@ -48,7 +48,6 @@ function Puntos() {
 	// 	})();
 	// }, [result1, result2]);
 	const restablecer = () => {
-
 		setNames([]);
 	};
 
@@ -269,10 +268,10 @@ function Puntos() {
 						onClick={deleteClickB}
 					/>
 				</div>
-			</div>
 			<NavLink onClick={restablecer} to="/" className="nav-link fs-2 my-5 button_30" role="button">
 				<span className="text">Inicio</span>
 			</NavLink>
+			</div>
 		</>
 	);
 }

@@ -21,8 +21,6 @@ const Header = () => {
 		}
 	};
 	const restablecer = () => {
-		console.log(names);
-
 		setNames([]);
 	};
 	return (

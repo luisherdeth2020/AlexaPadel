@@ -13,7 +13,7 @@
 }
 body {
 	align-items: center;
-	background-image: linear-gradient(to top, #37ecba 0%, #72afd3 100%);
+	background-image: linear-gradient(to bottom, #37ecba 0%, #72afd3 100%);
 	display: flex;
 	font-family: 'Maven Pro', sans-serif;
 	height: 100vh;
