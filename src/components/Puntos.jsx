@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useContext } from 'react';
 import { DataContext } from '../context/userContext';
@@ -30,7 +31,6 @@ function Puntos() {
 					},
 				],
 			};
-			// console.log(data);
 			if (isLoadling) {
 				await axios
 					.post('http://localhost:3900/api/score', data)
@@ -47,8 +47,6 @@ function Puntos() {
 			}
 		})();
 	}, [result1, result2]);
-
-	// async function hans() {}
 
 	async function handleClickOne() {
 		setIsLoadling(true);
@@ -73,7 +71,7 @@ function Puntos() {
 		if (result1.set2 === 2 && result1.totalPoints === 40) {
 			setResult1({ ...result1, set3: result1.set3 + 1, totalPoints: 0 });
 		}
-		
+
 		if (result1.set1 === 2 && result1.set2 === 1 && result1.totalPoints === 40) {
 			setResult1({ ...result1, set2: 2, totalPoints: 0 });
 
@@ -268,6 +266,9 @@ function Puntos() {
 					/>
 				</div>
 			</div>
+			<NavLink to="/" className="nav-link fs-2 my-5 button_30" role="button">
+				<span class="text">Inicio</span>
+			</NavLink>
 		</>
 	);
 }

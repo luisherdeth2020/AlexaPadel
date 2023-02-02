@@ -20,6 +20,11 @@ const Header = () => {
 			setDisabled(true);
 		}
 	};
+	const restablecer = ()=>{
+		setNames([''])
+		setInputValue('');
+		// document.querySelector('.participantes__caja').display = 'none';
+	}
 	return (
 		<>
 			<div className="container">
@@ -30,14 +35,17 @@ const Header = () => {
 				<div className={styles.container__main}>
 					<form onSubmit={enviarForm}>
 						<input
-							placeholder="Nombres.."
+							placeholder="Introduce participante"
 							disabled={disabled}
 							type="text"
 							value={inputValue}
 							onChange={(e) => setInputValue(e.target.value)}
 						/>
-						<button className={styles.add}  disabled={disabled} type="submit">
+						<button className={styles.add} disabled={disabled} type="submit">
 							Añadir
+						</button>
+						<button onClick={restablecer} className={styles.add}  type="submit">
+							Restablecer
 						</button>
 						{disabled && (
 							<div className={styles.message}>
@@ -56,8 +64,8 @@ const Header = () => {
 					</div>
 				</div>
 			</div>
-			<NavLink to="/marcador" className="nav-link fs-2 my-5 button_89" role="button">
-				Entrar
+			<NavLink to="/marcador" className="nav-link fs-2 my-5 button_30" role="button">
+				<span className="text">Entrar</span>
 			</NavLink>
 		</>
 	);
