@@ -85,9 +85,3 @@ h1 {
 	box-shadow: #d6d6e7 0 3px 7px inset;
 	transform: translateY(2px);
 }
-
-@media (min-width: 320px) and (max-width: 480px) {
-	body{
-		background: linear-gradient(0deg, rgba(55,236,186,1) 0%, rgba(114,175,211,1) 100%);
-	}
-}
