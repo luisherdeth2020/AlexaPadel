@@ -256,19 +256,19 @@ function Puntos() {
 				</div>
 				<div className="text2">
 					<input
-						className="mx-3 css-button text-uppercase"
+						className="mx-3 my-3 css-button text-uppercase"
 						type="button"
 						value="restar a"
 						onClick={deleteClickA}
 					/>
 					<input
-						className="mx-3 css-button text-uppercase"
+						className="mx-3 my-3 css-button text-uppercase"
 						type="button"
 						value="restar b"
 						onClick={deleteClickB}
 					/>
 				</div>
-			<NavLink onClick={restablecer} to="/" className="nav-link fs-2 my-5 button_30" role="button">
+			<NavLink onClick={restablecer} to="/" className="nav-link fs-2 mt-5 button_30" role="button">
 				<span className="text">Inicio</span>
 			</NavLink>
 			</div>
@@ -277,5 +277,3 @@ function Puntos() {
 }
 export default Puntos;
 
-// context
-// lt -h https://hiddenloop.dev -p 3900

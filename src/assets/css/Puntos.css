@@ -1,7 +1,8 @@
 .bg--table {
 	background-color: #22356f;
 	color: white;
-	min-width: 600px;
+	width: 100%;
+	max-width: 600px;
 }
 .bgcolor {
 	background-color: #68e0e1 !important;
