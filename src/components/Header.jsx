@@ -6,7 +6,6 @@ import styles from './Header.module.css';
 const Header = () => {
 	const navigate = useNavigate();
 	const { names, setNames } = useContext(DataContext);
-	console.log(names.length);
 	const [inputValue, setInputValue] = useState('');
 	const [disabled, setDisabled] = useState(false);
 	const [button, setButton] = useState(false);

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
 import { useEffect, useContext } from 'react';
 import { DataContext } from '../context/userContext';
 import '../assets/css/Puntos.css';
@@ -12,7 +12,7 @@ function Puntos() {
 	const [result2, setResult2] = useState({ set1: 0, set2: 0, set3: 0, totalPoints: 0 });
 	const [disabled, setDisabled] = useState(false);
 	const [victory, setVictory] = useState({ show: false, Message: '' });
-	const [error, setError] = useState('');
+	// const [error, setError] = useState('');
 	const [isLoadling, setIsLoadling] = useState(false);
 
 	// useEffect(() => {
@@ -58,7 +58,7 @@ function Puntos() {
 		if (result1.totalPoints === 30) {
 			setResult1({ ...result1, totalPoints: result1.totalPoints + 10 });
 		}
-		if (result1.totalPoints === 40 && result2.set1 < 2) {
+		if (result1.totalPoints === 40 && result2.set1 < 6) {
 			setResult1({ ...result1, set1: result1.set1 + 1, totalPoints: 0 });
 			setResult2({ ...result2, totalPoints: 0 });
 		}
@@ -75,7 +75,7 @@ function Puntos() {
 			setResult1({ ...result1, set3: result1.set3 + 1, totalPoints: 0 });
 		}
 
-		if (result1.set1 === 6 && result1.set2 === 1 && result1.totalPoints === 40) {
+		if (result1.set1 === 6 && result1.set2 === 5 && result1.totalPoints === 40) {
 			setResult1({ ...result1, set2: 6, totalPoints: 0 });
 
 			setDisabled(true);
@@ -85,7 +85,7 @@ function Puntos() {
 			🏆${names[0]} & ${names[1]}🏆`,
 			});
 		}
-		if (result1.set2 === 6 && result1.set3 === 1 && result1.totalPoints === 40) {
+		if (result1.set2 === 6 && result1.set3 === 5 && result1.totalPoints === 40) {
 			setResult1({ ...result1, set3: 6, totalPoints: 0 });
 
 			setDisabled(true);
@@ -95,7 +95,7 @@ function Puntos() {
 			🏆${names[0]} & ${names[1]}🏆`,
 			});
 		}
-		if (result1.set1 === 6 && result1.set3 === 1 && result1.totalPoints === 40) {
+		if (result1.set1 === 6 && result1.set3 === 5 && result1.totalPoints === 40) {
 			setResult1({ ...result1, set3: 6, totalPoints: 0 });
 
 			setDisabled(true);
@@ -139,11 +139,11 @@ function Puntos() {
 			setResult2({ ...result2, set2: result2.set2 + 1, totalPoints: 0 });
 		}
 
-		if (result2.set2 === 2 && result2.totalPoints === 40) {
+		if (result2.set2 === 6 && result2.totalPoints === 40) {
 			setResult2({ ...result2, set3: result2.set3 + 1, totalPoints: 0 });
 		}
-		if (result2.set1 === 2 && result2.set2 === 1 && result2.totalPoints === 40) {
-			setResult2({ ...result2, set2: 2, totalPoints: 0 });
+		if (result2.set1 === 6 && result2.set2 === 5 && result2.totalPoints === 40) {
+			setResult2({ ...result2, set2: 6, totalPoints: 0 });
 
 			setDisabled(true);
 			return setVictory({
@@ -151,8 +151,8 @@ function Puntos() {
 				Message: `🏆 ${names[2]} & ${names[3]} 🏆`,
 			});
 		}
-		if (result2.set2 === 2 && result2.set3 === 1 && result2.totalPoints === 40) {
-			setResult2({ ...result2, set3: 2, totalPoints: 0 });
+		if (result2.set2 === 6 && result2.set3 === 5 && result2.totalPoints === 40) {
+			setResult2({ ...result2, set3: 6, totalPoints: 0 });
 
 			setDisabled(true);
 			return setVictory({
@@ -160,8 +160,8 @@ function Puntos() {
 				Message: `🏆 ${names[2]} & ${names[3]} 🏆`,
 			});
 		}
-		if (result2.set1 === 2 && result2.set3 === 1 && result2.totalPoints === 40) {
-			setResult2({ ...result2, set3: 2, totalPoints: 0 });
+		if (result2.set1 === 6 && result2.set3 === 5 && result2.totalPoints === 40) {
+			setResult2({ ...result2, set3: 6, totalPoints: 0 });
 
 			setDisabled(true);
 			return setVictory({
@@ -223,9 +223,10 @@ function Puntos() {
 				{victory.Message && (
 					<h3 className="text-center victory">
 						¡CAMPEONES!
-						<h2>
-							<span className="text__message">{victory.Message}</span>
-						</h2>
+						{/* <h2> */}
+							<span className="h2 text__message">{victory.Message}</span>
+						{/* </h2> */}
+
 					</h3>
 				)}
 
