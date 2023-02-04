@@ -223,10 +223,7 @@ function Puntos() {
 				{victory.Message && (
 					<h3 className="text-center victory">
 						¡CAMPEONES!
-						{/* <h2> */}
 							<span className="h2 text__message">{victory.Message}</span>
-						{/* </h2> */}
-
 					</h3>
 				)}
 
