@@ -1,12 +1,16 @@
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { DataContext } from '../context/userContext';
 import styles from './Header.module.css';
 
 const Header = () => {
+	const navigate = useNavigate();
 	const { names, setNames } = useContext(DataContext);
+	console.log(names.length);
 	const [inputValue, setInputValue] = useState('');
 	const [disabled, setDisabled] = useState(false);
+	const [button, setButton] = useState(false);
+	const [message, setMessage] = useState({ show: false, message: '' });
 
 	const enviarForm = (e) => {
 		e.preventDefault();
@@ -19,11 +23,28 @@ const Header = () => {
 		if (names.length === 3) {
 			setDisabled(true);
 		}
+
+		if (names.length === 2) {
+			setButton(false);
+		}
 	};
 	const restablecer = () => {
 		setNames([]);
 		setDisabled(false);
 	};
+	const onEnter = () => {
+		if (names.length === 2 || names.length === 4) {
+			setButton(false);
+			navigate('/marcador');
+		}
+		if (names.length === 0 || names.length === 1 || names.length === 3) {
+			setButton(true);
+			setMessage({ show: true, message: 'Número de participantes es ' });
+		} else {
+			setMessage({ show: false });
+		}
+	};
+
 	return (
 		<>
 			<div className="container">
@@ -46,11 +67,14 @@ const Header = () => {
 						<button onClick={restablecer} className={styles.add} type="submit">
 							Restablecer
 						</button>
-						{disabled && (
-							<div className={styles.message}>
-								⚠️Máximo de participantes es <span className={styles.message__num}>4</span>⚠️
-							</div>
-						)}
+
+						{disabled ||
+							(message.show && (
+								<div className={styles.message}>
+									⚠️{message.message}
+									<span className={styles.message__num}>2 ó 4</span>⚠️
+								</div>
+							))}
 					</form>
 					<div className={styles.participantes}>
 						<div className={styles.participantes__caja}>
@@ -63,9 +87,9 @@ const Header = () => {
 					</div>
 				</div>
 			</div>
-			<NavLink to="/marcador" className="nav-link fs-2 my-5 button_30" role="button">
-				<span className="text">Entrar</span>
-			</NavLink>
+			<button onClick={onEnter} className="my-5 fs-2 button_30" role="button">
+				Entrar
+			</button>
 		</>
 	);
 };

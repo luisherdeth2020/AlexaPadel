@@ -62,21 +62,21 @@ function Puntos() {
 			setResult1({ ...result1, set1: result1.set1 + 1, totalPoints: 0 });
 			setResult2({ ...result2, totalPoints: 0 });
 		}
-		if (result1.set1 === 2 && result1.totalPoints === 40) {
+		if (result1.set1 === 6 && result1.totalPoints === 40) {
 			setResult1({ ...result1, set2: result1.set2 + 1, totalPoints: 0 });
 		}
-		if (result2.set2 === 2 && result1.totalPoints === 40) {
+		if (result2.set2 === 6 && result1.totalPoints === 40) {
 			setResult1({ ...result1, set3: result1.set3 + 1, totalPoints: 0 });
 		}
-		if (result2.set1 === 2 && result1.totalPoints === 40) {
+		if (result2.set1 === 6 && result1.totalPoints === 40) {
 			setResult1({ ...result1, set2: result1.set2 + 1, totalPoints: 0 });
 		}
-		if (result1.set2 === 2 && result1.totalPoints === 40) {
+		if (result1.set2 === 6 && result1.totalPoints === 40) {
 			setResult1({ ...result1, set3: result1.set3 + 1, totalPoints: 0 });
 		}
 
-		if (result1.set1 === 2 && result1.set2 === 1 && result1.totalPoints === 40) {
-			setResult1({ ...result1, set2: 2, totalPoints: 0 });
+		if (result1.set1 === 6 && result1.set2 === 1 && result1.totalPoints === 40) {
+			setResult1({ ...result1, set2: 6, totalPoints: 0 });
 
 			setDisabled(true);
 			return setVictory({
@@ -85,8 +85,8 @@ function Puntos() {
 			🏆${names[0]} & ${names[1]}🏆`,
 			});
 		}
-		if (result1.set2 === 2 && result1.set3 === 1 && result1.totalPoints === 40) {
-			setResult1({ ...result1, set3: 2, totalPoints: 0 });
+		if (result1.set2 === 6 && result1.set3 === 1 && result1.totalPoints === 40) {
+			setResult1({ ...result1, set3: 6, totalPoints: 0 });
 
 			setDisabled(true);
 			return setVictory({
@@ -95,8 +95,8 @@ function Puntos() {
 			🏆${names[0]} & ${names[1]}🏆`,
 			});
 		}
-		if (result1.set1 === 2 && result1.set3 === 1 && result1.totalPoints === 40) {
-			setResult1({ ...result1, set3: 2, totalPoints: 0 });
+		if (result1.set1 === 6 && result1.set3 === 1 && result1.totalPoints === 40) {
+			setResult1({ ...result1, set3: 6, totalPoints: 0 });
 
 			setDisabled(true);
 			return setVictory({
@@ -122,19 +122,19 @@ function Puntos() {
 		if (result2.totalPoints === 30) {
 			setResult2({ ...result2, totalPoints: result2.totalPoints + 10 });
 		}
-		if (result2.totalPoints === 40 && result1.set1 !== 2) {
+		if (result2.totalPoints === 40 && result1.set1 !== 6) {
 			setResult2({ ...result2, set1: result2.set1 + 1, totalPoints: 0 });
 			setResult1({ ...result1, totalPoints: 0 });
 		}
-		if (result2.set1 === 2 && result2.totalPoints === 40) {
+		if (result2.set1 === 6 && result2.totalPoints === 40) {
 			setResult2({ ...result2, set2: result2.set2 + 1, totalPoints: 0 });
 		}
-		if (result2.totalPoints === 40 && result1.set2 === 2) {
+		if (result2.totalPoints === 40 && result1.set2 === 6) {
 			setResult2({ ...result2, set3: result2.set3 + 1, totalPoints: 0 });
 			setResult1({ ...result1, totalPoints: 0 });
 		}
 
-		if (result2.totalPoints === 40 && result1.set1 === 2) {
+		if (result2.totalPoints === 40 && result1.set1 === 6) {
 			setResult1({ ...result1, totalPoints: 0 });
 			setResult2({ ...result2, set2: result2.set2 + 1, totalPoints: 0 });
 		}
