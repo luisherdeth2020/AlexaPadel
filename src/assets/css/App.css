@@ -20,9 +20,10 @@ body {
 	background: linear-gradient(90deg, rgba(55,236,186,1) 0%, rgba(114,175,211,1) 100%);
 	display: flex;
 	font-family: 'Maven Pro', sans-serif;
-	height: 100vh;
+	min-height: 100vh;
 	justify-content: center;
 	text-align: center;
+	padding: 2rem;
 }
 input {
 	background-color: #fcfcfd;
