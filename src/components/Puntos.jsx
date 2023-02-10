@@ -12,7 +12,6 @@ function Puntos() {
 	const [result2, setResult2] = useState({ set1: 0, set2: 0, set3: 0, totalPoints: 0 });
 	const [disabled, setDisabled] = useState(false);
 	const [victory, setVictory] = useState({ show: false, Message: '' });
-	// const [error, setError] = useState('');
 	const [isLoadling, setIsLoadling] = useState(false);
 
 	// useEffect(() => {
@@ -55,14 +54,19 @@ function Puntos() {
 	const winnerNames1 = names.length === 2 ? `🏆${names[0]}🏆` : `🏆${names[0]} & ${names[1]}🏆`;
 	const winnerNames2 = names.length === 2 ? `🏆${names[1]}🏆` : `🏆${names[2]} & ${names[3]}🏆`;
 
-	//
 	const player1Has40Points = result1.totalPoints === 40;
 	const player2Has40Points = result2.totalPoints === 40;
 	const player1WonSet1 = result1.set1 === 6;
-	const player1WonSet2 = result2.set2 === 6;
-	const player2WonSet = result2.set1 === 6;
+	const player1WonSet2 = result1.set2 === 6;
+	const player2WonSet1 = result2.set1 === 6;
 	const player2WonSet2 = result2.set2 === 6;
 	const player2NotWinSet1 = result2.set1 < 6;
+	const player1NotWinSet1 = result1.set1 < 6;
+	const player1NotWinSet2 = result1.set3 === 5;
+	const player1NotWinSet3 = result1.set3 === 5;
+	const player2NotWinSet2 = result2.set2 === 5;
+	const player2NotWinSet3 = result2.set3 === 5;
+
 
 	function showVictoryMessage(num) {
 		setVictory({
@@ -88,27 +92,29 @@ function Puntos() {
 		}
 		if (player2WonSet2) {
 			setResult1({ ...result1, set3: result1.set3 + 1, totalPoints: 0 });
+			setResult2({ ...result2, totalPoints: 0 });
 		}
-		if (player2WonSet) {
+		if (player2WonSet1) {
 			setResult1({ ...result1, set2: result1.set2 + 1, totalPoints: 0 });
+			setResult2({ ...result2, totalPoints: 0 });
 		}
-		if (result1.set2 === 6) {
+		if (player1WonSet2) {
 			setResult1({ ...result1, set3: result1.set3 + 1, totalPoints: 0 });
 		}
 
-		if (player1WonSet1 && result1.set2 === 5) {
+		if (player1WonSet1 && player1NotWinSet2) {
 			setResult1({ ...result1, set2: 6, totalPoints: 0 });
 
 			setDisabled(true);
 			return showVictoryMessage(1);
 		}
-		if (result1.set2 === 6 && result1.set3 === 5) {
+		if (player1WonSet2 && player1NotWinSet3) {
 			setResult1({ ...result1, set3: 6, totalPoints: 0 });
 
 			setDisabled(true);
 			return showVictoryMessage(1);
 		}
-		if (player1WonSet1 && result1.set3 === 5) {
+		if (player1WonSet1 && player1NotWinSet3) {
 			setResult1({ ...result1, set3: 6, totalPoints: 0 });
 
 			setDisabled(true);
@@ -131,14 +137,14 @@ function Puntos() {
 		if (result2.totalPoints === 30) {
 			setResult2({ ...result2, totalPoints: result2.totalPoints + 10 });
 		}
-		if (player2Has40Points && result1.set1 !== 6) {
+		if (player2Has40Points && player1NotWinSet1) {
 			setResult2({ ...result2, set1: result2.set1 + 1, totalPoints: 0 });
 			setResult1({ ...result1, totalPoints: 0 });
 		}
-		if (player2WonSet && player2Has40Points) {
+		if (player2WonSet1 && player2Has40Points) {
 			setResult2({ ...result2, set2: result2.set2 + 1, totalPoints: 0 });
 		}
-		if (player2Has40Points && result1.set2 === 6) {
+		if (player2Has40Points && player1WonSet2) {
 			setResult2({ ...result2, set3: result2.set3 + 1, totalPoints: 0 });
 			setResult1({ ...result1, totalPoints: 0 });
 		}
@@ -151,23 +157,23 @@ function Puntos() {
 		if (player2WonSet2 && player2Has40Points) {
 			setResult2({ ...result2, set3: result2.set3 + 1, totalPoints: 0 });
 		}
-		if (player2WonSet && result2.set2 === 5 && player2Has40Points) {
+		if (player2WonSet1 && player2NotWinSet2 && player2Has40Points) {
 			setResult2({ ...result2, set2: 6, totalPoints: 0 });
 
 			setDisabled(true);
-			return showVictoryMessage(2)
+			return showVictoryMessage(2);
 		}
-		if (player2WonSet2 && result2.set3 === 5 && player2Has40Points) {
+		if (player2WonSet2 && player2NotWinSet3 && player2Has40Points) {
 			setResult2({ ...result2, set3: 6, totalPoints: 0 });
 
 			setDisabled(true);
-			return showVictoryMessage(2)
+			return showVictoryMessage(2);
 		}
-		if (player2WonSet && result2.set3 === 5 && player2Has40Points) {
+		if (player2WonSet1 && player2NotWinSet3 && player2Has40Points) {
 			setResult2({ ...result2, set3: 6, totalPoints: 0 });
 
 			setDisabled(true);
-			return showVictoryMessage(2)
+			return showVictoryMessage(2);
 		}
 	}
 
@@ -196,7 +202,7 @@ function Puntos() {
 				<tbody>
 					<tr>
 						<td className="border-right">
-							<div className="d-flex flex-column align-items-start">
+							<div className="d-flex text-start">
 								{names.length === 2 ? (
 									<p>{names[0]}</p>
 								) : (
@@ -215,7 +221,7 @@ function Puntos() {
 					</tr>
 					<tr>
 						<td className="border-right">
-							<div className="d-flex flex-column align-items-start">
+							<div className="d-flex text-start">
 								{names.length === 2 ? (
 									<p>{names[1]}</p>
 								) : (
@@ -245,23 +251,20 @@ function Puntos() {
 						/>
 					</>
 				)}
-
-				{/* {victory.show && ( */}
-				{/* )} */}
 			</div>
 
 			<div className="container d-flex text-uppercase flex-column align-items-center">
 				<div>
 					<input
 						disabled={disabled}
-						className="my-3 mx-3 css-button text-uppercase"
+						className="my-3 me-2 mx-sm-3 css-button text-uppercase"
 						type="button"
 						value="sumar a"
 						onClick={handleClickOne}
 					/>
 					<input
 						disabled={disabled}
-						className="my-3 mx-3 css-button text-uppercase"
+						className="my-3 mx-sm-3 css-button text-uppercase"
 						type="button"
 						value="sumar b"
 						onClick={handleClickTwo}
@@ -269,22 +272,22 @@ function Puntos() {
 				</div>
 				<div className="text2">
 					<input
-						className="mx-3 my-3 css-button text-uppercase"
+						className="my-3 me-2 mx-sm-3 css-button text-uppercase"
 						type="button"
 						value="restar a"
 						onClick={deleteClickA}
 					/>
 					<input
-						className="mx-3 my-3 css-button text-uppercase"
+						className="my-3  mx-sm-3 css-button text-uppercase"
 						type="button"
 						value="restar b"
 						onClick={deleteClickB}
 					/>
 				</div>
-				<NavLink onClick={restablecer} to="/" className="nav-link fs-2 mt-5 button_30" role="button">
-					<span className="text">Inicio</span>
-				</NavLink>
 			</div>
+			<NavLink onClick={restablecer} to="/" className="nav-link fs-2 mt-5 button_30" role="button">
+				<span className="text">Inicio</span>
+			</NavLink>
 		</>
 	);
 }

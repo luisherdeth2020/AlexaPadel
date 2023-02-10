@@ -49,7 +49,7 @@ const Header = () => {
 			<div className="container">
 				<h1>BIENVENIDO A WIKIPADEL</h1>
 				<div className="subtitle my-5">
-					<h3>Nombre de los participantes</h3>
+					<h2>Nombre de los participantes</h2>
 				</div>
 				<div className={styles.container__main}>
 					<form onSubmit={enviarForm}>
