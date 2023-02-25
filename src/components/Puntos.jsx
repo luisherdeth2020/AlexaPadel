@@ -60,13 +60,12 @@ function Puntos() {
 	const player1WonSet2 = result1.set2 === 6;
 	const player2WonSet1 = result2.set1 === 6;
 	const player2WonSet2 = result2.set2 === 6;
-	const player2NotWinSet1 = result2.set1 < 6;
-	const player1NotWinSet1 = result1.set1 < 6;
-	const player1NotWinSet2 = result1.set3 === 5;
+	const player2NotWinGame1 = result2.set1 < 6;
+	const player1NotWinGame1 = result1.set1 < 6;
+	const player1NotWinSet2 = result1.set2 === 5;
 	const player1NotWinSet3 = result1.set3 === 5;
 	const player2NotWinSet2 = result2.set2 === 5;
 	const player2NotWinSet3 = result2.set3 === 5;
-
 
 	function showVictoryMessage(num) {
 		setVictory({
@@ -81,9 +80,17 @@ function Puntos() {
 		if (result1.totalPoints === 30) {
 			setResult1({ ...result1, totalPoints: result1.totalPoints + 10 });
 		}
+		// ?TODO
+		if (player1WonSet1 && player1NotWinSet2 && player1Has40Points) {
+			setResult1({ ...result1, set2: 6, totalPoints: 0 });
+			setResult2({ ...result2, totalPoints: 0 });
+
+			setDisabled(true);
+			return showVictoryMessage(1);
+		}
 		if (!player1Has40Points) return;
 
-		if (player2NotWinSet1) {
+		if (player2NotWinGame1) {
 			setResult1({ ...result1, set1: result1.set1 + 1, totalPoints: 0 });
 			setResult2({ ...result2, totalPoints: 0 });
 		}
@@ -102,12 +109,6 @@ function Puntos() {
 			setResult1({ ...result1, set3: result1.set3 + 1, totalPoints: 0 });
 		}
 
-		if (player1WonSet1 && player1NotWinSet2) {
-			setResult1({ ...result1, set2: 6, totalPoints: 0 });
-
-			setDisabled(true);
-			return showVictoryMessage(1);
-		}
 		if (player1WonSet2 && player1NotWinSet3) {
 			setResult1({ ...result1, set3: 6, totalPoints: 0 });
 
@@ -137,7 +138,7 @@ function Puntos() {
 		if (result2.totalPoints === 30) {
 			setResult2({ ...result2, totalPoints: result2.totalPoints + 10 });
 		}
-		if (player2Has40Points && player1NotWinSet1) {
+		if (player2Has40Points && player1NotWinGame1) {
 			setResult2({ ...result2, set1: result2.set1 + 1, totalPoints: 0 });
 			setResult1({ ...result1, totalPoints: 0 });
 		}

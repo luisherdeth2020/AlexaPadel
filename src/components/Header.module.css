@@ -31,14 +31,19 @@ form {
 	flex-direction: column;
 	align-items: center;
 }
-input{
-  color:#373b44;
+input {
+	color: #373b44;
 }
 .add {
-	background-color: transparent;
+	background-color: #fcfcfd;
+	border-radius: 0.3em;
 	border: none;
-	border-bottom: #fce22a 2px solid;
-	outline: none;
+	padding: 0.5em 1rem;
+	box-shadow: #2d234266 0 2px 4px, #2d23424d 0 7px 13px -3px, #d6d6e7 0 -3px inset;
+	-webkit-border-radius: 0.3em;
+	-moz-border-radius: 0.3em;
+	-ms-border-radius: 0.3em;
+	-o-border-radius: 0.3em;
 }
 .message {
 	margin-top: 1.5rem;
@@ -47,8 +52,8 @@ input{
 	font-weight: bold;
 }
 @media (min-width: 320px) and (max-width: 480px) {
-	.container__main{
+	.container__main {
 		flex-direction: column;
-		gap:2rem;
+		gap: 2rem;
 	}
 }

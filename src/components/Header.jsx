@@ -8,13 +8,14 @@ const Header = () => {
 	const { names, setNames } = useContext(DataContext);
 	const [inputValue, setInputValue] = useState('');
 	const [disabled, setDisabled] = useState(false);
-	const [button, setButton] = useState(false);
 	const [message, setMessage] = useState({ show: false, message: '' });
 
 	const enviarForm = (e) => {
 		e.preventDefault();
+		console.log(names.length);
 
 		if (inputValue === '') {
+			setMessage({ show: true, message: 'Número de participantes es ' });
 			return;
 		}
 		setNames([...names, inputValue]);
@@ -23,24 +24,21 @@ const Header = () => {
 			setDisabled(true);
 		}
 
-		if (names.length === 2) {
-			setButton(false);
+		if (names.length === 1) {
+			setMessage({ show: false });
 		}
 	};
+	
 	const restablecer = () => {
 		setNames([]);
-		setDisabled(false);
+		setMessage({ show: false });
 	};
 	const onEnter = () => {
 		if (names.length === 2 || names.length === 4) {
-			setButton(false);
 			navigate('/marcador');
 		}
 		if (names.length === 0 || names.length === 1 || names.length === 3) {
-			setButton(true);
 			setMessage({ show: true, message: 'Número de participantes es ' });
-		} else {
-			setMessage({ show: false });
 		}
 	};
 
@@ -67,13 +65,12 @@ const Header = () => {
 							Restablecer
 						</button>
 
-						{disabled ||
-							(message.show && (
-								<div className={styles.message}>
-									⚠️{message.message}
-									<span className={styles.message__num}>2 ó 4</span>⚠️
-								</div>
-							))}
+						{message.show && (
+							<div className={styles.message}>
+								⚠️{message.message}
+								<span className={styles.message__num}>2 ó 4</span>⚠️
+							</div>
+						)}
 					</form>
 					<div className={styles.participantes}>
 						<div className={styles.participantes__caja}>
