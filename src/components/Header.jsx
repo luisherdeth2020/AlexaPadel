@@ -20,6 +20,7 @@ const Header = () => {
 		setNames([...names, inputValue]);
 		setInputValue('');
 		if (names.length === 3) {
+			setMessage({ show: false });
 			setDisabled(true);
 		}
 

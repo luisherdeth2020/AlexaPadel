@@ -108,6 +108,9 @@ function Puntos() {
 		if (player1WonSet2) {
 			setResult1({ ...result1, set3: result1.set3 + 1, totalPoints: 0 });
 		}
+		if(player1WonSet1 && player2NotWinGame1 && player2Has40Points){
+			// ?todo por acabar
+		}
 
 		if (player1WonSet2 && player1NotWinSet3) {
 			setResult1({ ...result1, set3: 6, totalPoints: 0 });
