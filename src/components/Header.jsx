@@ -12,7 +12,6 @@ const Header = () => {
 
 	const enviarForm = (e) => {
 		e.preventDefault();
-		console.log(names.length);
 
 		if (inputValue === '') {
 			setMessage({ show: true, message: 'Número de participantes es ' });
@@ -28,7 +27,7 @@ const Header = () => {
 			setMessage({ show: false });
 		}
 	};
-	
+
 	const restablecer = () => {
 		setNames([]);
 		setMessage({ show: false });
